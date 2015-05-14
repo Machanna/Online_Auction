@@ -129,7 +129,7 @@ function validate()
 	return false;
 	}
 	re = /^[A-Za-z]+$/;
-	if(!(re.test(document.registration.name.value)))
+	if(!(re.test(document.registration.username.value)))
 	{
 	alert('Enter only Alphabets');
 	return false;
@@ -202,7 +202,7 @@ ddsmoothmenu.init({
     <div id="templatemo_menu">
     	<div id="top_nav" class="ddsmoothmenu">
             <ul>
-                <li><a href="index.html" >Home</a></li>
+                
                  <li><a href="login.html" class="selected">Login</a></li>
                 <li><a href="reg.jsp">Register</a></li>
              
@@ -232,7 +232,7 @@ ddsmoothmenu.init({
     	<input type="password" name="password" id="password" class="field required"  />
     </div>			
     
-    <p class="forgot"><a href="forgotpassword.jsp">Forgot your password?</a></p>
+    
     			
     <div class="submit">
         <button type="submit">Log in</button>   

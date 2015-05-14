@@ -67,16 +67,18 @@ ddsmoothmenu.init({
 	<!After successfully registering customer will be navigated to welcome page with a message "Welcome CustomerName" and he can also go to home page on clicking Home Button>   
 	<h3>
 	<font color="white">
-		
+		Welcome
+		<%=session.getAttribute("Name") %>
+
 		<br>
 	</font>	
 	</h3>
 	<h4><font color="white">Thanks for registering!</font></h4>
 	<br>
 	<br><font color="white">
-	<a href="mainpage.jsp">Click Here</a> to go to your Home Page.
-
-</font>
+	<a href="login.html">Login</a> to go to your Home Page.
+       
 </center>
+</font>
 </body>
 </html>

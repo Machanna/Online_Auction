@@ -60,10 +60,8 @@ ddsmoothmenu.init({
     <div id="templatemo_menu">
     	<div id="top_nav" class="ddsmoothmenu">
             <ul>
-                <li><a href="admin.jsp" >Home</a></li>
-                <li><a href="productdetails.jsp" >Update product</a></li>
+                
                 <li><a href="Bidlist.jsp" class="selected" >Bidder List</a></li>
-                <li><a href="payment.jsp" >Payment Details</a></li>
                 <li><a href="lastprice.jsp" >Maximum_BidPrice</a></li>
                 <li><a href="log.html" target="_top">Logout</a></li>
             </ul>

@@ -62,9 +62,8 @@ ddsmoothmenu.init({
     <div id="templatemo_menu">
     	<div id="top_nav" class="ddsmoothmenu">
             <ul>
-                <li><a href="adminmain.html">Home</a></li>
-                <li><a href="admin.jsp" class="selected">Delete Product</a></li>
-                <li><a href="productdetails.jsp" target="_top">Update Product</a></li>
+      
+               
                 <li><a href="Bidlist.jsp">Bidder List</a></li>
                  <li><a href="payment.jsp">Payment Details</a></li>
                   <li><a href="lastprice.jsp">Maximum_Bidprice</a></li>
@@ -77,13 +76,14 @@ ddsmoothmenu.init({
     </div> <!-- END of templatemo_menu -->
 
 <%
+ String user=(String)session.getAttribute("userId");
 Class.forName("com.mysql.jdbc.Driver");//connects to the database
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shravya",
             "root", "shravya");
     
     Statement st = con.createStatement();
     ResultSet rs;
-    rs = st.executeQuery("Select * from Product");//selects the Product Details 
+    rs = st.executeQuery("Select * from Product where userId = '" + user + "'");//selects the Product Details 
 int i=0;
 %>
 

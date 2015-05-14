@@ -57,8 +57,7 @@ ddsmoothmenu.init({
     <div id="templatemo_menu">
     	<div id="top_nav" class="ddsmoothmenu">
             <ul>
-                <li><a href="admin.jsp" >Delete Product</a></li>
-                <li><a href="productdetails.jsp" class="selected">Update product</a></li>
+               
                 <li><a href="Bidlist.jsp"  >Bidder List</a></li>
                 <li><a href="payment.jsp" >Payment Details</a></li>
                 <li><a href="lastprice.jsp" >Maximum_BidPrice</a></li>

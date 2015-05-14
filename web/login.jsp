@@ -22,13 +22,17 @@ if(rs.next())//executes the query and checks whether the given username and pass
              //password in user table,If match is present allows user to login in to the site else login error
              //  page displays    
          {
+       session.setAttribute("userId",rs.getString("userId"));
+       //session.setAttribute("Name",rs.getString("username"));
        String username=rs.getString("username");
        String password=rs.getString("password");
         if(user.equals(username) && pwd.equals(password))
              {
-        	   
-        		response.sendRedirect("mainpage.jsp");//on success user directs into main page
+        	  
+        		response.sendRedirect("mainpage.jsp");
+                                               //on success user directs into main page
 %>
+
                  
 <%
       	 }

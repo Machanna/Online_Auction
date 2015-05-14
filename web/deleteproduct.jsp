@@ -62,8 +62,17 @@ ddsmoothmenu.init({
     
     <div id="templatemo_menu">
     	<div id="top_nav" class="ddsmoothmenu">
-            <ul>
-                <li><a href="adminmain.html" class="selected">Home</a></li>
+              <ul>
+                <li><a href="mainpage.jsp" class="selected">Home</a></li>
+                <li><a href="#">My Products</a>
+                     <ul>
+                     <li><a href="viewproduct.jsp">Edit Product</a></li>
+                     <li><a href="addproduct.html">Add Product</a></li>
+                     <li><a href="delete.jsp">Delete Product</a></li>
+                     </ul>
+                    <li><a href="Bidwon.jsp">Winners List</a>
+                </li>
+  
                 <li><a href="log.html" target="_top">Logout</a></li>
             </ul>
             <br style="clear: left" />
@@ -72,15 +81,13 @@ ddsmoothmenu.init({
        
     </div> <!-- END of templatemo_menu -->
 <title>Product Deleted</title>
-</head>
+<body bgcolor="beige">
 <%
 String id[] = new String[10];
 for (int i = 0; i < 10; i++) {
 id[i] = request.getParameter("check" + i);
-}
-%>
-<body bgcolor="beige">
-<%
+
+String user=(String)session.getAttribute("userId");
 try {
 Class.forName("com.mysql.jdbc.Driver");//connects to the database
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shravya",
@@ -88,16 +95,15 @@ Class.forName("com.mysql.jdbc.Driver");//connects to the database
 ResultSet rs = null;
 Statement st = null;
 st = con.createStatement();
-for (int a = 0; a < 10; a++) {
-st.executeUpdate("delete from Product where productId='" + id[a]
+st.executeUpdate("delete from Product where productId='" + id[i]
 + "'");//deletes the products with id's selected in the web page
-if(id[a] != null){%>
-<h3><font color="white">Product Details : <%= id[a]%> Deleted Successfully</font></h3>
-<% }}
+if(id[i] != null){%>
+<h3><font color="white">Product Details : <%= id[i]%> Deleted Successfully</font></h3>
+<% }
 } catch (SQLException e) {
 System.out.println(e.getMessage());
 }
-
+}
 %>
 
 

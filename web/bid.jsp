@@ -68,9 +68,17 @@ ddsmoothmenu.init({
     <div id="templatemo_menu">
     	<div id="top_nav" class="ddsmoothmenu">
             <ul>
-                <li><a href="mainpage.jsp" class="selected">Home</a></li>
-                <li><a href="bid.jsp" target="_top" class="selected">Bid</a></li>
-                <li><a href="log.html" target="_top">LogOut</a></li>
+                <li><a href="mainpage.jsp" target="_top">Home</a></li>
+                <li><a href="#">My Products</a>
+                     <ul>
+                     <li><a href="viewproduct.jsp" target="_top">Edit Product</a></li>
+                     <li><a href="addproduct.html" target="_top">Add Product</a></li>
+                     <li><a href="delete.jsp" target="_top">DeleteProduct</a></li>
+                     </ul>
+                    <li><a href="Bidwon.jsp" target="_top">Winners List</a>
+                </li>
+  
+                <li><a href="log.html" target="_top">Logout</a></li>
             </ul>
             <br style="clear: left" />
 			
@@ -110,11 +118,11 @@ ddsmoothmenu.init({
 
 <center>
     <h1><font color="white">Select Product</font></h1>
-    <form name=myname method=post action="insertBid.jsp" onsubmit="return validateForm()" >
+    <form name=myname method=post action="insertBid.jsp" target="_top" onsubmit="return validateForm()" >
         <%--for security reasons re entering the username and password--%>
         <font color="white">
-        <p>Re Enter Userid</p> 
-        <input type="text" name="userid" />
+        <p>Re Enter Username</p> 
+        <input type="text" name="username" />
         <p>Re Enter Password</p>
         <input type="text" name="password" />
         <%--displaying the drop down list of all the vehicleID'S available to buy--%>

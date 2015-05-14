@@ -60,10 +60,9 @@ ddsmoothmenu.init({
     <div id="templatemo_menu">
     	<div id="top_nav" class="ddsmoothmenu">
             <ul>
-                <li><a href="admin.jsp" >Delete Product</a></li>
-                <li><a href="productdetails.jsp" target="_top">Update Product</a></li>
+          
+                
                 <li><a href="Bidlist.jsp"  >Bidder List</a></li>
-                <li><a href="payment.jsp" >Payment Details</a></li>
                 <li><a href="lastprice.jsp" class="selected">Maximum_BidPrice</a></li>
                 <li><a href="log.html" target="_top">LogOut</a></li>
             </ul>
@@ -88,6 +87,7 @@ ddsmoothmenu.init({
     String price = "";
     String pid="";
     String pname="";
+    String userId ="";
    // session.setAttribute("id",id);
     
             						//parses the string value AdminID to integer AId
@@ -98,6 +98,8 @@ ddsmoothmenu.init({
          //executes the query and stores the result in resultset 'rs'
             
             %>
+            
+            
             <body background="resource/backd.jpg" height="1000" width="1000">  
             <div style="position: absolute; width: 50px; height: 28px; z-index: 3; left: 1000px; top: 350px" id="layer5">
                 <font face="Arial Narrow" size="2">
@@ -105,7 +107,7 @@ ddsmoothmenu.init({
                     <font color="#000000"></font></a></font></b>
                 </font>
             </div>
-            <div style="position: top; width: 311px; height: 55px; z-index: 4; left: 600px; top: 350px" id="layer4">
+            <div style="position: top; width: 450px; height: 55px; z-index: 4; left: 600px; top: 350px" id="layer4">
                 <font color="white"> <u><b><font face="white"
 	size="5">Maximum Bidprice of each Product</font></b></u> </font>
             </div>
@@ -119,24 +121,20 @@ ddsmoothmenu.init({
 					<td align="center">
 					<b><font face="Verdana" size="2">ProductId</font></b></td>
 					<td align="center">
-					<b>
-					<font face="Verdana" size="2">BidderId</font></b></td>
-                    <td align="center">
+					
 					<b>
 					<font face="Verdana" size="2">Maximum_Bidprice</font></b></td>
                     
-                                            <b>
-                                                
-                                            </b></td>
                                         
                 </tr>
             <%
             while(rs.next())
             {
             	pid = rs.getString(2); //gets the output values from the executed query
-            	BidderId = rs.getString(3);
+            	//BidderId = rs.getString(3);
                 price=rs.getString(1);
               	pname=rs.getString(4);
+               
             
             
    
@@ -146,11 +144,10 @@ ddsmoothmenu.init({
 				<font color="white" face="Verdana" size="2"><%=pname%></font></td>
 				<td  align="center">
 				<font color="white" face="Verdana" size="2"><%=pid%></font></td>
-                <td  align="center">
-				<font color="white" face="Verdana" size="2"><%=BidderId%></font></td>  
+               
                 <td  align="center">
 				<font color="white" face="Verdana" size="2"><%=price%></font></td> 
-				
+			
                        
                     </td>
                 </tr>

@@ -73,7 +73,7 @@ function validate()
 	
 
 	//validation for phone number field  
-	var q=document.forms["registration"]["phone"].value; 
+	var q=document.forms["registration"]["phoneNo"].value; 
 	var r=q.length;
 	if(r!=10)
 	{
@@ -82,7 +82,7 @@ function validate()
 	}
 	//Validation for other feilds
 	
-	var d=document.forms["registration"]["address"].value;
+	var d=document.forms["registration"]["Address"].value;
 	
 	var g=d.length;
 	if(g==0)
@@ -173,7 +173,7 @@ form legend {
     <div id="templatemo_menu">
     	<div id="top_nav" class="ddsmoothmenu">
             <ul>
-                <li><a href="index.html" >Home</a></li>
+               
                  <li><a href="login.html">Login</a></li>
                 <li><a href="reg.jsp" class="selected">Register</a></li>
                 
@@ -204,37 +204,18 @@ form legend {
 				<tr>
 					<td colspan="2">
 						<fieldset>
-							<legend>Personal Information</legend>
-
-							<p>
-								Title <br> <select name="title">
-									<option value="Mr.">Mr.</option>
-									<option value="Ms.">Ms.</option>
-								</select>
-							</p>
+							<legend>Personal Information</legend>				
 							
-								
 						
-							
-						</fieldset>
-<br><br>					</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>
-						<fieldset>
-							<legend>Account Information</legend>
+<br><br>	
+						
 							<p>
 								<label> Username:
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								</label> <input type="text" name="username" size="20"
 									onBlur="check(this.value);"><br>
 							</p>
-                                                        <p>
-							 User Type<br> <input type="text" name="userType" size="20">	
-							</p>
-							<div id="mydiv"
-								style="position: relative; color: gray; font-size: 10pt; left: 40px; top: -10px;">Enter atleast 6 chars </div>
+                                             
 							<p>
 								<label>Password:
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -267,23 +248,18 @@ form legend {
 									style="overflow: hidden"
 									onKeyDown="textCounter(document.registration.address,document.registration.remLen1,100)"
 									onKeyUp="textCounter(document.registration.address,document.registration.remLen1,100)"></textarea>
-								<br> <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								</label> <input readonly type="text" name="remLen1" size="3"
-									maxlength="3" value="100"> characters left <br>
+								<br> 
 							</p>
 						</fieldset>
 					</td>
 				</tr>
-				<tr>
-					<td colspan="2">&nbsp;&nbsp;&nbsp; <input type="checkbox" name="terms"
-						checked>I have read and accept the <a href="#">Terms
-							and Conditions<br> </a>
-					</td>
+				
+					
 
 
 
 
-				</tr>
+				
 			</table>
 		</font> <br> 
 		<center>
@@ -293,7 +269,7 @@ form legend {
 	</form>
    <div id="templatemo_footer">
     	<p>
-			<a href="index.html">Home</a>  | <a href="log.html">Login</a> 
+			<a href="index.html">Home</a>  | <a href="login.html">Login</a> 
 		</p>
 
     	Copyright © 2014 <a href="#">Netbidz</a> 

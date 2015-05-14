@@ -8,7 +8,7 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <!Connecting to the database>
 <% 
-if(!(null==session.getAttribute("Name")))
+if(!(null==session.getAttribute("userId")))
 {
 Class.forName("com.mysql.jdbc.Driver"); 
 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shravya","root","shravya"); 
@@ -16,7 +16,8 @@ java.sql.Statement st= con.createStatement();
 //saving the executed query in the resultset
 ResultSet rs; 
 //storing name in the session variable
-String user=(String)session.getAttribute("Name");
+String Name=(String)session.getAttribute("Name");
+String user=(String)session.getAttribute("userId");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -84,7 +85,7 @@ ddsmoothmenu.init({
     <div id="templatemo_menu">
     	<div id="top_nav" class="ddsmoothmenu">
             
-                <a href="mainpage.jsp" class="selected">Home</a> |  <a href="log.html" target="_top">Logout</a>
+                <a href="mainpage.jsp" class="selected">Home</a> | <a href="addproduct.html" target="_top">Add Product</a> |  <a href="viewproduct.jsp" target="_top">Edit Product Details</a> |  <a href="delete.jsp" target="_top">Delete Products</a> |  <a href="Bidwon.jsp" class="selected">Won</a> |  <a href="log.html" target="_top">Logout</a> 
             </ul>
             <br style="clear: left" />
 			
@@ -100,49 +101,27 @@ ddsmoothmenu.init({
 	     
 	<!displays the list of products (under added today tab) which are added on the day user visits the website. eg:suppose a product is added on april 29th and user visits the site on the same day ,then he can view that product under added today tab>  	
     <div id="templatemo_main">
-	<div id="sidebar" class="float_l">
-        	<br><br><div class="sidebar_box"><span class="bottom"></span> 
-                            
-            	<h3>Added Today-> </h3> 
-                <div class="content"> 
-                	<%
-                	Calendar currentDate = Calendar.getInstance();
-					SimpleDateFormat formatter= 
-					new SimpleDateFormat("yyyy-MM-dd");
-					String datenow = formatter.format(currentDate.getTime());
-                	String query="select pname,price from product where lastdate='"+datenow+"'";
-                	rs=st.executeQuery(query);
-                	int i=0;
-                	if(i<3)
-                	while(rs.next())
-                	{
-                	i++;%>
-                	<div class="bs_box">
-                    
-                        <h4><a href="#"><%=rs.getString(1)%></a></h4>
-                        <p class="price">$<%=rs.getString(2)%></p>
-                        <div class="cleaner"></div>
+                     
+                 <div id="content" class="float_r">
+		    	<iframe src="auctionlist.jsp" name="list" width="100%" height="600px" frameborder="0" marginwidth="0px" marginheight="0px"></iframe>
+                 </div>
+	
                     </div></div>
-                   <% } //if there are no such products added on current date no products is displayed
-                	if(i==0){%>
-                	<br><br><br><br>No Products<br><br><br><br>
+                  
+                	
                     
-                  <%}%>
+                  
                      
                 </div>
             </div>
-                  </div><br><br>
-           
-        
-        <div id="content" class="float_r">
-		    	<iframe src="auctionlist.jsp" name="list" width="100%" height="600px" frameborder="0" marginwidth="0px" marginheight="0px"></iframe>
-        </div>
+                  </div>
+       
         <div class="cleaner"></div>
     </div> <!-- END of templatemo_main -->
     
     <div id="templatemo_footer">
     	<p>
-			<a href="mainpage.jsp">Home</a>| <a href="log.jsp">Logout</a> 
+			<a href="mainpage.jsp">Home</a>| <a href="log.html">Logout</a> 
 		</p>
 
     	Copyright © 2014 <a href="#">Netbidz</a> 

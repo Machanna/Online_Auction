@@ -62,7 +62,7 @@
             <div id="templatemo_menu">
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="adminmain.html" class="selected">Home</a></li>
+                        <li><a href="mainpage.jsp" class="selected">Home</a></li>
                         <li><a href="log.html" target="_top">Logout</a></li>
                     </ul>
                     <br style="clear: left" />
@@ -77,6 +77,7 @@
                     String pname = "";
                     String price = "";
                     String id = request.getParameter("id");
+                    
                     try {
 
                         Class.forName("com.mysql.jdbc.Driver");

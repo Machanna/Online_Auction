@@ -1,3 +1,4 @@
+<%@page import="java.sql.Date"%>
 <!--@shravya-->
 <!--Updates the product table with the values entered in the web page -->
 <%@page import="java.sql.DriverManager"%>
@@ -8,6 +9,8 @@
 <%@ page import="java.sql.PreparedStatement"%>
 <%@ page import="java.sql.DriverManager"%>
 <%@ page import="java.sql.Connection"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Calendar"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -66,7 +69,16 @@ ddsmoothmenu.init({
     <div id="templatemo_menu">
     	<div id="top_nav" class="ddsmoothmenu">
             <ul>
-                <li><a href="adminmain.html" class="selected">Home</a></li>
+                <li><a href="mainpage.jsp" class="selected">Home</a></li>
+                <li>  <a href="#">My Products</a>
+                     <ul>
+                     <li><a href="viewproduct.jsp">Edit Product</a></li>
+                     <li><a href="addproduct.html">Add Product</a></li>
+                     <li><a href="delete.jsp">Delete Product</a></li>
+                     </ul></li>
+                    <li><a href="Bidwon.jsp">Winners List</a>
+                </li>
+  
                 <li><a href="log.html" target="_top">Logout</a></li>
             </ul>
             <br style="clear: left" />
@@ -80,7 +92,12 @@ ddsmoothmenu.init({
         int id=Integer.parseInt(id1);//string parameter is converted to int using parseInt function
         String pname=request.getParameter("pname");
         String price1=request.getParameter("price");
-        int price=Integer.parseInt(price1);
+        float price=Float.parseFloat(price1);
+        String incr_amt="1";
+        String lastdate1=request.getParameter("lastdate");
+        java.util.Date lastdate2 = new SimpleDateFormat("yyyy-mm-dd").parse(lastdate1);
+        Date lastdate = new Date(lastdate2.getTime());
+        //String user=(String)session.getAttribute("userId");
       Connection con=null;
 
  try {
@@ -88,11 +105,13 @@ ddsmoothmenu.init({
 
                 con= DriverManager.getConnection("jdbc:mysql://localhost/shravya","root","shravya");
      //updates the product details with details entered in the web page
-    PreparedStatement cstmt= con.prepareStatement("update Product set pname=? , price=? where productId=?");
+    PreparedStatement cstmt= con.prepareStatement("update Product set pname=? , price=? , incr_amt=?  where productId='"+id+"'");
              
  cstmt.setString(1,pname);
- cstmt.setInt(2,price);
- cstmt.setInt(3,id);
+ cstmt.setFloat(2,price);
+ cstmt.setString(3,incr_amt);
+ //cstmt.setDate(4,lastdate);
+ //cstmt.setInt(5,id);
        
                 cstmt.executeUpdate(); //if the update is successfull below message is displayed
 

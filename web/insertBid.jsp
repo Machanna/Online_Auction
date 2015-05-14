@@ -1,9 +1,3 @@
-<%-- 
-    Document   : insertCar
-    Created on : Apr 28, 2014, 12:20:04 AM
-    Author     : bhavyagona
-    Desription : This page is used to update the Car table once the car is sucessfully bought
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
@@ -58,27 +52,7 @@ ddsmoothmenu.init({
 </head>
 <body>
 
-<div id="templatemo_wrapper">
-	<div id="templatemo_header">
-       	<div id="site_title">
-        	<h1><a href="#">Netbidz</a></h1>
-        </div>
-            
-        <div class="cleaner"></div>
-    </div> <!-- END of templatemo_header -->
-    
-    <div id="templatemo_menu">
-    	<div id="top_nav" class="ddsmoothmenu">
-            <ul>
-                <li><a href="mainpage.jsp" class="selected">Home</a></li>
-                <li><a href="bid.jsp" target="_top">Bid</a></li>
-                <li><a href="log.html" target="_top">LogOut</a></li>
-            </ul>
-            <br style="clear: left" />
-			
-        </div> <!-- end of ddsmoothmenu -->
-       
-    </div> <!-- END of templatemo_menu -->
+
    
 <html>
     <head>
@@ -96,9 +70,8 @@ ddsmoothmenu.init({
          </Style>
     </head>
     <body>
-        
+      
         <h1><font color="#CD7F32">Your bid is success</font></h1>
-        <br>
 	<br>
 	<br>
 	<br>
@@ -116,46 +89,40 @@ ddsmoothmenu.init({
                
                
                boolean retval=false;
+               
+               String id=request.getParameter("id");//retreives the id given in the webpage and stores it in id1 attribute.
+               //int id=Integer.parseInt(id1);//string parameter is converted to int using parseInt function
+               String price1=request.getParameter("price");
+               System.out.println("price " + price1);
+               double price=Double.parseDouble(price1);
                Class.forName("com.mysql.jdbc.Driver");
                java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shravya","root", "shravya");
                Statement st= con.createStatement();
-                ResultSet rs =st.executeQuery("select * from User"); 
-                while(rs.next()){
-                    
-                    String pid=request.getParameter("productid");
-                    String userid=request.getParameter("userid");
-                    String password=request.getParameter("password");
-                    String price=request.getParameter("price");
-                    Calendar currentDate = Calendar.getInstance();
-SimpleDateFormat formatter= 
-new SimpleDateFormat("yyyy-MM-dd");
+               Calendar currentDate = Calendar.getInstance();
+SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
 String datenow = formatter.format(currentDate.getTime());
-                    String u=rs.getString("userid");
-		    String p=rs.getString("Password");
-                    //checking the login details are correct
-                    //inserting into Car table
-		if(u.equals(userid) && p.equals(password))
-		{
-			session.setAttribute("userid",userid);
+                    
+			String user=(String)session.getAttribute("userId");
                         
-                        st.executeUpdate("insert into Bid_Details(Currentprice,Biddate,productId,userId) values ('"+price+"','"+datenow+"','"+pid+"','"+userid+"')"); 
-                        retval=true;
-                        break;
-		}
-                if(retval=false)
-                {
-                    
-                  response.sendRedirect("Error.jsp");
-                    
-                }
-                }
-    
-               
-               
+                        String query = "insert into Bid_Details(Currentprice,Biddate,productId,userId) values ('"+price+"','"+datenow+"','"+id+"','"+user+"')"; 
+                         System.out.println("Q:"+query);
+                        int i=st.executeUpdate(query); 
+	if(i==0)
+	{
+%>
+<jsp:forward page="error1.html" />	
+                        
+		<%
+	}
 
-               
-               
-        %>   
+       else {
+            //if all values are inserted successfully welcome page is opened
+%>
+
+              
+               <% 
+}
+%>
         
         
 

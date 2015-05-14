@@ -24,6 +24,7 @@ String datenow = formatter.format(currentDate.getTime());
 <title>NetBidz</title>
 <link href="css/templatemo_style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/jquery.dualSlider.0.2.css" />
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/ddsmoothmenu.js">
 </script>
@@ -46,7 +47,6 @@ ddsmoothmenu.init({
 })
 
 </script>
-<link rel="stylesheet" type="text/css" media="all" href="css/jquery.dualSlider.0.2.css" />
 <script src="js/jquery-1.3.2.min.js" type="text/javascript"></script>
 <script src="js/jquery.easing.1.3.js" type="text/javascript"></script>
 <script src="js/jquery.timers-1.2.js" type="text/javascript"></script>
@@ -67,6 +67,8 @@ ddsmoothmenu.init({
     });
  </script>
 
+
+
 </head>
 
 <body>
@@ -75,9 +77,16 @@ ddsmoothmenu.init({
     
 	<div id="content" class="float_l">
 	<h1>New Products</h1><!--selects the product details -->
+        <h3>Please bid on the products starting with product's price </h3>
 			<%
+                        String id = "";
+                    String pname = "";
+                    String price1 = "";
+                    String incr_amt = "";
+                    String lastdate = "";
 			 int i=0;
-			String query1="select productId,pname,price,incr_amt,lastdate,userId from product";
+                         String user=(String)session.getAttribute("userId");
+			String query1="select productId,pn  ame,price,incr_amt,lastdate,userId from product where lastdate >= '"+datenow+"' and userId != '" + user + "' and productId NOT IN (select productId from Bid_Details where userId = '"+user+"')";
 			rs=st.executeQuery(query1); 
 			%>
 <%
@@ -86,16 +95,23 @@ ddsmoothmenu.init({
 	      i++;   
 	       if(i<=2)
 	       {
+                 id = rs.getString(1);//stores the selected attribues in to respective parameters
+                            pname = rs.getString(2);
+                            price1 = rs.getString(3);
+                            incr_amt = rs.getString(4);
+                            lastdate = rs.getString(5);
 	    %>
 	    <div class="product_box">
-               
-               <font color="black" size="2pt"><b><%=rs.getString(1)%></b></font>
-               <br><p class="product_price"><br>$<%=rs.getInt(3)%></p>
-               
-               Product Name   :  <b><%=rs.getString(2)%></b><br><br>
-
-                       <a href="bid.jsp" class="detail">Bid</a>
-               
+                <form name="auction" method="post" action="insertBid.jsp" id="auction">
+               <font color="black" size="2pt"><b><%=id%><input type="hidden" name="id" value="<%=id%>" /></b></font>
+               <br/><p class="product_price"><br/>$<%=price1%></p>
+               Last Date: <b><%=lastdate%></b><br/><br/>
+               Product Name   :  <b><%=pname%></b><br/><br/>
+               <font color="Black" size="2pt"> <input type="text" name="price" id="acprice"/> 
+                   <p>Bid Price</p></font>
+                <center>
+                <input type="submit" value="Bid" /></center>
+                </form>
         </div> 
 	 
 	 
@@ -103,22 +119,33 @@ ddsmoothmenu.init({
 	       else
 	       {
 	    	   i=0;
+                   id = rs.getString(1);//stores the selected attribues in to respective parameters
+                            pname = rs.getString(2);
+                            price1 = rs.getString(3);
+                            incr_amt = rs.getString(4);
+                            lastdate = rs.getString(5);
 	    	   %><div class="product_box no_margin_right">
-           	   
-               <font color="black" size="2pt"><b><%=rs.getString(1)%></b></font>
-               <br><p class="product_price"><br>$<%=rs.getInt(3)%></p>
-                Product Name   :  <b><%=rs.getString(2)%></b><br><br>
-               <a href="bid.jsp" class="detail">Bid</a>
-               
+                <form name="auction1" method="post" action="insertBid.jsp"  id="auction1">           	   
+               <font color="black" size="2pt"><b><%=id%></b><input type="hidden" name="id" value="<%=id%>" /></b></font>
+               <br/><p class="product_price"><br>$<%=price1%></p>
+                Last Date: <b><%=lastdate%></b><br/><br/>
+                Product Name   :  <b><%=pname%></b><br/><br/>
+                <font color="Black" size="2pt"> <input type="text" name="price" id="ac1price"/><p>Bid Price</p></font>
+                <center>
+                        <input type="submit" value="Bid"/></center>
+                </form>
        </div> 
 	      <%
 	      }
-          }
+       
+                       
+                                               }
+                           rs.close();
 	       
 	       %>
 		 
 		 
-		 <br>
+		 <br/>
 </div></div>
                                     </center>
 
